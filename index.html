@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>琢石记 — 中国石雕石刻艺术</title>
+<meta name="description" content="以石载道，刻录千年。传承非遗石雕工艺，每一件作品皆为可传世的艺术品。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&family=Noto+Sans+SC:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Earth & Stone Palette — extracted from real stone tones */
+  --ink: #1a1714;
+  --ink-soft: #2a2520;
+  --stone-dark: #3d3830;
+  --stone-mid: #6b6054;
+  --stone-warm: #8a7e70;
+  --stone-light: #b5a998;
+  --sand: #d4c9b8;
+  --cream: #e8dfd0;
+  --parchment: #f2ece3;
+  --rice: #f7f3ec;
+  --white-warm: #faf8f4;
+
+  /* Accent — like the warmth of sunlight on granite */
+  --gold: #c8a86c;
+  --gold-dim: #a68b55;
+  --gold-bright: #dab978;
+  --rust: #9e6b4a;
+
+  /* Typography */
+  --serif: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', serif;
+  --sans: 'Noto Sans SC', 'Source Han Sans SC', sans-serif;
+
+  /* Spacing scale */
+  --s-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --s-sm: clamp(0.75rem, 1.5vw, 1.25rem);
+  --s-md: clamp(1.5rem, 3vw, 2.5rem);
+  --s-lg: clamp(3rem, 6vw, 5rem);
+  --s-xl: clamp(5rem, 10vw, 9rem);
+  --s-2xl: clamp(7rem, 15vw, 14rem);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--white-warm);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+/* Selection */
+::selection { background: var(--gold); color: var(--ink); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--stone-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--stone-mid); }
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.5rem 0;
+  transition: all 0.5s ease;
+}
+.nav.scrolled {
+  background: rgba(250, 248, 244, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1rem 0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--white-warm);
+  transition: color 0.5s;
+}
+.nav.scrolled .nav-logo { color: var(--ink); }
+
+.nav-links {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+.nav.scrolled .nav-links a { color: var(--stone-mid); }
+.nav.scrolled .nav-links a:hover { color: var(--ink); }
+.nav.scrolled .nav-links a::after { background: var(--gold-dim); }
+
+.nav-lang {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.5);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.nav-lang:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.nav.scrolled .nav-lang {
+  border-color: var(--sand);
+  color: var(--stone-mid);
+}
+
+/* Mobile menu toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 24px;
+  position: relative;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s;
+}
+.nav.scrolled .nav-toggle span { background: var(--ink); }
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.nav-toggle span:nth-child(3) { bottom: 0; }
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(4rem, 8vh, 8rem);
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(26, 23, 20, 0.3) 0%,
+      rgba(26, 23, 20, 0.1) 40%,
+      rgba(26, 23, 20, 0.5) 80%,
+      rgba(26, 23, 20, 0.85) 100%
+    ),
+    url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1920&q=80&auto=format') center/cover no-repeat;
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-out forwards;
+}
+@keyframes heroZoom {
+  to { transform: scale(1); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-title em {
+  font-style: normal;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-dim));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 2;
+  max-width: 550px;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200, 168, 108, 0.3);
+}
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  right: clamp(1.5rem, 4vw, 4rem);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ============================================
+   PHILOSOPHY SECTION
+   ============================================ */
+.philosophy {
+  padding: var(--s-xl) 0;
+  background: var(--white-warm);
+}
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: center;
+}
+.philosophy-visual {
+  position: relative;
+}
+.philosophy-img {
+  aspect-ratio: 3/4;
+  background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80&auto=format') center/cover no-repeat;
+  filter: grayscale(20%) contrast(1.05);
+}
+.philosophy-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(200,168,108,0.1), transparent);
+}
+.philosophy-accent {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--gold);
+  opacity: 0.3;
+}
+.philosophy-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: var(--s-sm);
+}
+.philosophy-text h2 strong {
+  font-weight: 600;
+}
+.philosophy-text p {
+  font-size: 0.95rem;
+  color: var(--stone-mid);
+  line-height: 2;
+  margin-bottom: var(--s-sm);
+}
+.philosophy-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-top: var(--s-md);
+  border-top: 1px solid var(--sand);
+}
+.stat-number {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 200;
+  color: var(--gold-dim);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--stone-warm);
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   WORKS / GALLERY
+   ============================================ */
+.works {
+  padding: var(--s-xl) 0;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+}
+.works::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--s-lg);
+}
+.section-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.3;
+}
+.section-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem auto 0;
+  opacity: 0.5;
+}
+
+/* Filter tabs */
+.works-filter {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: var(--s-lg);
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  padding: 0.6rem 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: rgba(200,168,108,0.1);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Masonry-like gallery */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.work-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1;
+}
+.work-card:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.work-card:nth-child(6) { grid-column: span 2; aspect-ratio: 2/1; }
+
+.work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s;
+  filter: grayscale(15%) brightness(0.9);
+}
+.work-card:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0%) brightness(1);
+}
+
+.work-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(26,23,20,0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1rem, 2vw, 2rem);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.work-card:hover .work-card-overlay { opacity: 1; }
+
+.work-card-title {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.work-card-meta {
+  font-size: 0.75rem;
+  color: var(--stone-light);
+  letter-spacing: 0.08em;
+}
+.work-card-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  margin-top: 0.5rem;
+  align-self: flex-start;
+}
+
+.works-cta {
+  text-align: center;
+  margin-top: var(--s-lg);
+}
+
+/* ============================================
+   ARTISAN / ABOUT
+   ============================================ */
+.artisan {
+  padding: var(--s-xl) 0;
+  background: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+.artisan::before {
+  content: '匠';
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: clamp(20rem, 40vw, 40rem);
+  font-weight: 900;
+  color: rgba(0,0,0,0.02);
+  pointer-events: none;
+  line-height: 1;
+}
+.artisan-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: center;
+}
+.artisan-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  position: relative;
+}
+.artisan-img {
+  overflow: hidden;
+}
+.artisan-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(30%);
+  transition: filter 0.6s;
+}
+.artisan-img:hover img { filter: grayscale(0%); }
+.artisan-img:first-child {
+  grid-row: span 2;
+  aspect-ratio: 3/4;
+}
+.artisan-img:nth-child(2) { aspect-ratio: 4/3; }
+.artisan-img:nth-child(3) { aspect-ratio: 4/3; }
+
+.artisan-content h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: var(--s-sm);
+}
+.artisan-content h2 strong { font-weight: 600; }
+
+.artisan-quote {
+  position: relative;
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  margin: var(--s-md) 0;
+  border-left: 2px solid var(--gold);
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--stone-dark);
+  line-height: 2;
+  font-style: italic;
+}
+.artisan-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: var(--s-md);
+}
+.credential {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(200,168,108,0.08);
+  border: 1px solid rgba(200,168,108,0.2);
+  font-size: 0.8rem;
+  color: var(--stone-dark);
+  letter-spacing: 0.05em;
+}
+.credential-icon {
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  mask: var(--icon) center/contain no-repeat;
+  -webkit-mask: var(--icon) center/contain no-repeat;
+}
+
+/* ============================================
+   PROCESS / CRAFT
+   ============================================ */
+.process {
+  padding: var(--s-xl) 0;
+  background: var(--ink-soft);
+  color: #fff;
+  position: relative;
+}
+.process::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,168,108,0.3), transparent);
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: var(--s-lg);
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 3rem;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold-dim), transparent);
+}
+
+.step {
+  text-align: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+.step-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  background: var(--ink-soft);
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s;
+}
+.step:hover .step-number {
+  background: var(--gold);
+  color: var(--ink);
+}
+.step-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.step-desc {
+  font-size: 0.85rem;
+  color: var(--stone-warm);
+  line-height: 1.8;
+}
+
+/* ============================================
+   MATERIALS / STONE
+   ============================================ */
+.materials {
+  padding: var(--s-xl) 0;
+  background: var(--white-warm);
+}
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--sand);
+  margin-top: var(--s-lg);
+}
+.material-card {
+  background: var(--white-warm);
+  padding: clamp(2rem, 3vw, 3rem);
+  transition: background 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.material-card:hover {
+  background: var(--rice);
+}
+.material-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.material-card:hover::before { height: 100%; }
+
+.material-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.material-origin {
+  font-size: 0.75rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+.material-desc {
+  font-size: 0.88rem;
+  color: var(--stone-mid);
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+.material-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.trait {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  background: rgba(200,168,108,0.08);
+  color: var(--stone-dark);
+}
+
+/* ============================================
+   CUSTOM / BESPOKE
+   ============================================ */
+.custom {
+  padding: var(--s-xl) 0;
+  background: var(--parchment);
+  position: relative;
+}
+.custom-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: var(--s-lg);
+  position: relative;
+}
+.custom-flow::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: var(--sand);
+}
+
+.flow-step {
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+}
+.flow-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--parchment);
+}
+.flow-icon-inner {
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.flow-step:hover .flow-icon-inner {
+  transform: scale(1.5);
+}
+.flow-step-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+}
+.flow-step-desc {
+  font-size: 0.8rem;
+  color: var(--stone-warm);
+  line-height: 1.7;
+}
+.flow-step-num {
+  font-family: var(--serif);
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   TRUST / LOGOS
+   ============================================ */
+.trust {
+  padding: var(--s-lg) 0;
+  background: var(--white-warm);
+  border-top: 1px solid var(--sand);
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.trust-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-dim);
+}
+.trust-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1;
+}
+.trust-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.trust-desc {
+  font-size: 0.75rem;
+  color: var(--stone-warm);
+  line-height: 1.6;
+}
+
+/* ============================================
+   CONTACT / CTA
+   ============================================ */
+.contact {
+  padding: var(--s-xl) 0;
+  background: var(--ink);
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+.contact-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 200;
+  line-height: 1.3;
+  margin-bottom: var(--s-sm);
+}
+.contact-title strong { font-weight: 500; }
+.contact-desc {
+  font-size: 0.95rem;
+  color: var(--stone-warm);
+  max-width: 500px;
+  margin: 0 auto var(--s-md);
+  line-height: 2;
+}
+
+.contact-methods {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: var(--s-md);
+}
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+.contact-method:hover {
+  border-color: var(--gold);
+  background: rgba(200,168,108,0.05);
+}
+.contact-method-icon {
+  font-size: 1.2rem;
+}
+.contact-method-text {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--stone-light);
+}
+
+/* Inquiry form */
+.inquiry-form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--stone-warm);
+  margin-bottom: 0.5rem;
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+  outline: none;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--gold);
+}
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7e70' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+}
+.form-select option {
+  background: var(--ink);
+  color: #fff;
+}
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.form-submit {
+  width: 100%;
+  padding: 1rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+.form-submit:hover {
+  background: var(--gold-bright);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: var(--s-md) 0;
+  background: #13110e;
+  color: var(--stone-warm);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+.footer-desc {
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--stone-mid);
+  max-width: 300px;
+}
+.footer-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+  margin-bottom: 1.25rem;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--stone-mid);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+.footer-bottom {
+  margin-top: var(--s-md);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--stone-mid);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .works-grid { grid-template-columns: repeat(2, 1fr); }
+  .work-card:nth-child(1) { grid-column: span 2; grid-row: span 1; aspect-ratio: 2/1; }
+  .work-card:nth-child(6) { grid-column: span 1; aspect-ratio: 1; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .process-steps::before { display: none; }
+  .materials-grid { grid-template-columns: 1fr; }
+  .custom-flow { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .custom-flow::before { display: none; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-lang { display: none; }
+  .philosophy-grid { grid-template-columns: 1fr; }
+  .philosophy-visual { order: -1; }
+  .artisan-layout { grid-template-columns: 1fr; }
+  .artisan-images { order: -1; }
+  .works-grid { grid-template-columns: 1fr 1fr; }
+  .work-card:nth-child(1) { grid-column: span 2; }
+  .work-card:nth-child(6) { grid-column: span 2; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: 1fr; }
+  .custom-flow { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .hero-scroll { display: none; }
+  .contact-methods { flex-direction: column; align-items: center; }
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.loader-text {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 0.3em;
+}
+.loader-bar {
+  width: 120px;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  animation: loadBar 1.8s ease-in-out forwards;
+}
+@keyframes loadBar {
+  to { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loader" id="loader">
+  <div class="loader-text">琢石记</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">琢石记</a>
+    <ul class="nav-links">
+      <li><a href="#philosophy">理念</a></li>
+      <li><a href="#works">作品</a></li>
+      <li><a href="#artisan">匠人</a></li>
+      <li><a href="#process">工艺</a></li>
+      <li><a href="#materials">石材</a></li>
+      <li><a href="#custom">定制</a></li>
+      <li><a href="#contact">联络</a></li>
+    </ul>
+    <a href="en.html" class="nav-lang">EN</a>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <p class="hero-eyebrow">传承千年石雕技艺 · 非遗手作</p>
+    <h1 class="hero-title">以石载道<br><em>刻录千年</em></h1>
+    <p class="hero-subtitle">每一件作品，皆为匠人与石材的对话。<br>从选材到成器，历经数月雕琢，承载东方美学的永恒之魂。</p>
+    <div class="hero-cta">
+      <a href="#works" class="btn btn-primary">鉴赏作品</a>
+      <a href="#custom" class="btn btn-outline">定制咨询</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>向下探索</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy" id="philosophy">
+  <div class="container">
+    <div class="philosophy-grid">
+      <div class="philosophy-visual reveal">
+        <div class="philosophy-img" role="img" aria-label="工匠精雕石刻作品"></div>
+        <div class="philosophy-accent"></div>
+      </div>
+      <div class="philosophy-text">
+        <h2 class="reveal">石头是时间的语言<br><strong>雕刻是与永恒的对话</strong></h2>
+        <p class="reveal reveal-delay-1">中国石雕艺术源远流长，从云冈石窟到曲阳石雕，千年传承不断。我们延续这份古老技艺，以当代审美重新诠释，让每一件作品既承载历史厚度，又焕发新的生命力。</p>
+        <p class="reveal reveal-delay-2">我们的石材来自中国最负盛名的矿区，经匠人数月精心雕琢，从粗坯到细雕，每一刀都是与石头的深度对话。这不仅是工艺品，更是可以传世的艺术品。</p>
+        <div class="philosophy-stats reveal reveal-delay-3">
+          <div>
+            <div class="stat-number">30+</div>
+            <div class="stat-label">年传承经验</div>
+          </div>
+          <div>
+            <div class="stat-number">2000+</div>
+            <div class="stat-label">件作品交付</div>
+          </div>
+          <div>
+            <div class="stat-number">50+</div>
+            <div class="stat-label">国家藏家收藏</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Works Gallery -->
+<section class="works" id="works">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">作品鉴赏</p>
+      <h2 class="section-title">石中有灵，刀下生韵</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="works-filter reveal">
+      <button class="filter-btn active" data-filter="all">全部作品</button>
+      <button class="filter-btn" data-filter="buddha">佛像造像</button>
+      <button class="filter-btn" data-filter="landscape">山水景观</button>
+      <button class="filter-btn" data-filter="animal">瑞兽祥禽</button>
+      <button class="filter-btn" data-filter="stationery">文房雅玩</button>
+      <button class="filter-btn" data-filter="custom-work">定制作品</button>
+    </div>
+
+    <div class="works-grid reveal">
+      <div class="work-card" data-category="buddha">
+        <img src="https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=1200&q=80&auto=format" alt="自在观音像" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">自在观音</div>
+          <div class="work-card-meta">汉白玉 · 高 120cm · 可定制</div>
+          <span class="work-card-tag">佛像造像</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="animal">
+        <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=600&q=80&auto=format" alt="石狮" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">瑞狮呈祥</div>
+          <div class="work-card-meta">青石 · 高 80cm</div>
+          <span class="work-card-tag">瑞兽祥禽</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="landscape">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80&auto=format" alt="山水摆件" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">溪山行旅</div>
+          <div class="work-card-meta">太湖石组合 · 可定制</div>
+          <span class="work-card-tag">山水景观</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="stationery">
+        <img src="https://images.unsplash.com/photo-1596394723269-e15b51b23ab4?w=600&q=80&auto=format" alt="砚台" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">松风砚</div>
+          <div class="work-card-meta">端砚 · 手工雕刻</div>
+          <span class="work-card-tag">文房雅玩</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="buddha">
+        <img src="https://images.unsplash.com/photo-1580130775562-0ef92da028de?w=600&q=80&auto=format" alt="石窟造像" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">静思罗汉</div>
+          <div class="work-card-meta">花岗岩 · 高 60cm</div>
+          <span class="work-card-tag">佛像造像</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="custom-work">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80&auto=format" alt="定制庭院雕塑" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">庭院雅境 · 定制方案</div>
+          <div class="work-card-meta">私人庭院整体石雕定制</div>
+          <span class="work-card-tag">定制作品</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="animal">
+        <img src="https://images.unsplash.com/photo-1547483238-2cbf881a559f?w=600&q=80&auto=format" alt="龙柱" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">盘龙柱</div>
+          <div class="work-card-meta">花岗岩 · 高 300cm</div>
+          <span class="work-card-tag">瑞兽祥禽</span>
+        </div>
+      </div>
+      <div class="work-card" data-category="landscape">
+        <img src="https://images.unsplash.com/photo-1582564286960-f15f tried?w=600&q=80&auto=format" alt="假山" loading="lazy">
+        <div class="work-card-overlay">
+          <div class="work-card-title">云山叠翠</div>
+          <div class="work-card-meta">太湖石 · 园林假山</div>
+          <span class="work-card-tag">山水景观</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="works-cta reveal">
+      <a href="#contact" class="btn btn-outline">查看全部作品 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Artisan -->
+<section class="artisan" id="artisan">
+  <div class="container">
+    <div class="artisan-layout">
+      <div class="artisan-images reveal">
+        <div class="artisan-img">
+          <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&q=80&auto=format" alt="工匠雕刻中" loading="lazy">
+        </div>
+        <div class="artisan-img">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80&auto=format" alt="精雕细节" loading="lazy">
+        </div>
+        <div class="artisan-img">
+          <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&q=80&auto=format" alt="石材选材" loading="lazy">
+        </div>
+      </div>
+      <div class="artisan-content">
+        <h2 class="reveal">匠心传承<br><strong>三代石雕世家</strong></h2>
+        <p class="reveal reveal-delay-1">自祖父辈起，家族三代投身石雕艺术。从曲阳到青田，从惠安到寿山，遍访名匠，博采众长。三十余年磨一剑，将传统技法与现代审美融为一体。</p>
+        <blockquote class="artisan-quote reveal reveal-delay-2">
+          "每块石头都有自己的纹理和脾性。匠人的使命不是征服它，而是倾听它，找到最适合它的表达方式。一刀一凿，皆是敬畏。"
+        </blockquote>
+        <div class="artisan-credentials reveal reveal-delay-3">
+          <div class="credential">
+            <span>◆</span> 国家级非遗传承人
+          </div>
+          <div class="credential">
+            <span>◆</span> 中国工艺美术大师
+          </div>
+          <div class="credential">
+            <span>◆</span> 国际石材艺术金奖
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">匠心工艺</p>
+      <h2 class="section-title">从顽石到艺术的蜕变</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-number">壹</div>
+        <h3 class="step-title">选材相石</h3>
+        <p class="step-desc">亲赴矿区，观石纹、辨石质、听石音。每一块石材都经反复甄选，择其最优者方可入刀。</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-number">贰</div>
+        <h3 class="step-title">设计构思</h3>
+        <p class="step-desc">依石材天然形态、纹理走向，因材施艺。绘制成稿，反复推敲，力求天人合一之境。</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-number">叁</div>
+        <h3 class="step-title">粗雕细琢</h3>
+        <p class="step-desc">先以大刀阔斧定其形，再以细凿慢刻入其神。从粗坯到精雕，需经数月乃至数年。</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-number">肆</div>
+        <h3 class="step-title">打磨成器</h3>
+        <p class="step-desc">层层打磨，由粗砂至细砂，最终以蜡封润。石质温润如玉，光泽内敛含蓄，方为大成。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Materials -->
+<section class="materials" id="materials">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">珍贵石材</p>
+      <h2 class="section-title">择天下名石，成传世之器</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="materials-grid reveal">
+      <div class="material-card">
+        <h3 class="material-name">汉白玉</h3>
+        <p class="material-origin">产地：北京房山 · 四川宝兴</p>
+        <p class="material-desc">洁白无瑕，质地细腻温润。自古为皇家建筑与佛像雕刻的首选石材，象征圣洁与庄严。历经千年不褪色、不风化。</p>
+        <div class="material-traits">
+          <span class="trait">洁白细腻</span>
+          <span class="trait">皇家御用</span>
+          <span class="trait">耐候性强</span>
+        </div>
+      </div>
+      <div class="material-card">
+        <h3 class="material-name">青石</h3>
+        <p class="material-origin">产地：山东嘉祥 · 福建惠安</p>
+        <p class="material-desc">色泽青灰，质地坚硬致密。是中国最传统的雕刻石材之一，尤适于大型建筑雕刻和庭院装饰，古朴典雅。</p>
+        <div class="material-traits">
+          <span class="trait">坚硬致密</span>
+          <span class="trait">古朴典雅</span>
+          <span class="trait">性价比高</span>
+        </div>
+      </div>
+      <div class="material-card">
+        <h3 class="material-name">花岗岩</h3>
+        <p class="material-origin">产地：福建泉州 · 山东日照</p>
+        <p class="material-desc">硬度极高，色彩丰富。从芝麻白到芝麻黑、锈石黄，种类繁多。抗风化能力极强，适合户外大型雕塑与建筑构件。</p>
+        <div class="material-traits">
+          <span class="trait">色彩丰富</span>
+          <span class="trait">极高硬度</span>
+          <span class="trait">户外首选</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom Service -->
+<section class="custom" id="custom">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">专属定制</p>
+      <h2 class="section-title">为您打造独一无二的石雕作品</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="custom-flow reveal">
+      <div class="flow-step">
+        <div class="flow-step-num">01</div>
+        <div class="flow-icon"><div class="flow-icon-inner"></div></div>
+        <h3 class="flow-step-title">需求沟通</h3>
+        <p class="flow-step-desc">了解您的空间、风格偏好、预算与用途，提供专业建议与石材方案</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">02</div>
+        <div class="flow-icon"><div class="flow-icon-inner"></div></div>
+        <h3 class="flow-step-title">设计初稿</h3>
+        <p class="flow-step-desc">根据需求绘制设计稿，确认造型、尺寸、石材，可提供3D效果图</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">03</div>
+        <div class="flow-icon"><div class="flow-icon-inner"></div></div>
+        <h3 class="flow-step-title">匠心制作</h3>
+        <p class="flow-step-desc">签订合同后开始制作，全程拍摄记录，定期向您反馈进度</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">04</div>
+        <div class="flow-icon"><div class="flow-icon-inner"></div></div>
+        <h3 class="flow-step-title">成品验收</h3>
+        <p class="flow-step-desc">作品完成后拍摄高清照片与视频供您验收，确认无误后安排发货</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">05</div>
+        <div class="flow-icon"><div class="flow-icon-inner"></div></div>
+        <h3 class="flow-step-title">专业物流</h3>
+        <p class="flow-step-desc">定制木箱防震包装，与专业艺术品物流合作，全程投保，安全送达全球</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust -->
+<section class="trust" id="trust">
+  <div class="container">
+    <div class="trust-grid reveal">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M16 24l5 5 11-11"/></svg>
+        </div>
+        <div class="trust-label">品质保证</div>
+        <div class="trust-desc">每件作品附赠收藏证书<br>匠人签名或印章</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="2"/><path d="M6 18h36"/><path d="M14 28h8"/></svg>
+        </div>
+        <div class="trust-label">安全支付</div>
+        <div class="trust-desc">支持银行电汇 / PayPal<br>信用卡等多种方式</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48"><path d="M8 38l8-12 6 6 8-14 10 8"/><rect x="4" y="6" width="40" height="32" rx="2"/></svg>
+        </div>
+        <div class="trust-label">全球物流</div>
+        <div class="trust-desc">专业防震包装<br>艺术品物流全程投保</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48"><path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z"/><path d="M24 14v10l7 7"/></svg>
+        </div>
+        <div class="trust-label">专属服务</div>
+        <div class="trust-desc">24小时响应<br>一对一顾问全程跟进</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="contact-title reveal">开启您的<br><strong>石雕艺术之旅</strong></h2>
+    <p class="contact-desc reveal reveal-delay-1">无论是收藏鉴赏还是空间定制，我们都期待与您深入交流。每一件作品都从一次对话开始。</p>
+
+    <div class="contact-methods reveal reveal-delay-2">
+      <a href="mailto:contact@zhuoshiji.art" class="contact-method">
+        <span class="contact-method-icon">✉</span>
+        <span class="contact-method-text">contact@zhuoshiji.art</span>
+      </a>
+      <a href="#" class="contact-method">
+        <span class="contact-method-icon">💬</span>
+        <span class="contact-method-text">WhatsApp: +86 138-0000-0000</span>
+      </a>
+      <a href="#" class="contact-method">
+        <span class="contact-method-icon">📱</span>
+        <span class="contact-method-text">微信: ZhuoShiJi_Stone</span>
+      </a>
+    </div>
+
+    <form class="inquiry-form reveal reveal-delay-3" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="name">姓名</label>
+          <input class="form-input" type="text" id="name" placeholder="您的姓名" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">邮箱</label>
+          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="interest">感兴趣的方向</label>
+        <select class="form-select" id="interest">
+          <option value="">请选择</option>
+          <option value="buddha">佛像造像</option>
+          <option value="landscape">山水景观</option>
+          <option value="animal">瑞兽祥禽</option>
+          <option value="stationery">文房雅玩</option>
+          <option value="custom">定制服务</option>
+          <option value="other">其他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">您的需求</label>
+        <textarea class="form-textarea" id="message" placeholder="请描述您的需求，包括期望的石材、尺寸、用途、预算范围等，我们将为您提供专业建议。"></textarea>
+      </div>
+      <button type="submit" class="form-submit">提交咨询</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">琢石记</div>
+        <p class="footer-desc">以石载道，刻录千年。传承非遗石雕工艺，为全球藏家与空间打造可传世的石雕艺术作品。</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">作品</h4>
+        <ul class="footer-links">
+          <li><a href="#works">佛像造像</a></li>
+          <li><a href="#works">山水景观</a></li>
+          <li><a href="#works">瑞兽祥禽</a></li>
+          <li><a href="#works">文房雅玩</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">了解</h4>
+        <ul class="footer-links">
+          <li><a href="#artisan">匠人故事</a></li>
+          <li><a href="#process">工艺流程</a></li>
+          <li><a href="#materials">石材知识</a></li>
+          <li><a href="#">文化专栏</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">服务</h4>
+        <ul class="footer-links">
+          <li><a href="#custom">定制流程</a></li>
+          <li><a href="#">物流说明</a></li>
+          <li><a href="#">退换政策</a></li>
+          <li><a href="#">隐私条款</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 琢石记 ZhuoShiJi. All rights reserved.</span>
+      <span>ICP备案号：XXXXXXXXXX</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================
+// Loading screen
+// ============================================
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+// ============================================
+// Nav scroll behavior
+// ============================================
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 80) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  lastScroll = scrollY;
+}, { passive: true });
+
+// ============================================
+// Smooth scroll for nav links
+// ============================================
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ============================================
+// Reveal on scroll (IntersectionObserver)
+// ============================================
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+revealElements.forEach(el => observer.observe(el));
+
+// ============================================
+// Works filter
+// ============================================
+const filterBtns = document.querySelectorAll('.filter-btn');
+const workCards = document.querySelectorAll('.work-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+    workCards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = '';
+        card.style.opacity = '1';
+        card.style.transform = 'scale(1)';
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          if (!card.classList.contains('active')) card.style.display = 'none';
+        }, 300);
+      }
+    });
+  });
+});
+
+// ============================================
+// Parallax hero (reduced on mobile)
+// ============================================
+if (window.matchMedia('(min-width: 769px)').matches) {
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero-bg');
+    const scrolled = window.scrollY;
+    if (scrolled < window.innerHeight) {
+      hero.style.transform = `scale(${1 + scrolled * 0.0002}) translateY(${scrolled * 0.3}px)`;
+    }
+  }, { passive: true });
+}
+
+// ============================================
+// Form submit
+// ============================================
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '已提交，感谢您的咨询！';
+  btn.style.background = '#4a7c59';
+  setTimeout(() => {
+    btn.textContent = '提交咨询';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// ============================================
+// Mobile nav toggle
+// ============================================
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.style.display === 'flex';
+  if (isOpen) {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.display = 'flex';
+    navLinks.style.position = 'fixed';
+    navLinks.style.top = '0';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.bottom = '0';
+    navLinks.style.background = 'rgba(26, 23, 20, 0.97)';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.alignItems = 'center';
+    navLinks.style.justifyContent = 'center';
+    navLinks.style.gap = '2rem';
+    navLinks.style.zIndex = '99';
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.style.color = 'rgba(255,255,255,0.8)';
+      a.style.fontSize = '1.1rem';
+    });
+  }
+});
+</script>
+
+</body>
+</html>
