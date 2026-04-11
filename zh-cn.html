@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>琢石记 — 中国石雕石刻艺术</title>
+<title>圣腾雕刻 — 中国石雕石刻艺术</title>
 <meta name="description" content="以石载道，刻录千年。传承非遗石雕工艺，每一件作品皆为可传世的艺术品。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1137,7 +1137,6 @@ img { display: block; max-width: 100%; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
-  .nav-lang { display: none; }
   .philosophy-grid { grid-template-columns: 1fr; }
   .philosophy-visual { order: -1; }
   .artisan-layout { grid-template-columns: 1fr; }
@@ -1207,14 +1206,14 @@ img { display: block; max-width: 100%; }
 
 <!-- Loading Screen -->
 <div class="loader" id="loader">
-  <div class="loader-text">琢石记</div>
+  <div class="loader-text">圣腾雕刻</div>
   <div class="loader-bar"></div>
 </div>
 
 <!-- Navigation -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">琢石记</a>
+    <a href="#" class="nav-logo">圣腾雕刻</a>
     <ul class="nav-links">
       <li><a href="#philosophy">理念</a></li>
       <li><a href="#works">作品</a></li>
@@ -1573,49 +1572,21 @@ img { display: block; max-width: 100%; }
     <p class="contact-desc reveal reveal-delay-1">无论是收藏鉴赏还是空间定制，我们都期待与您深入交流。每一件作品都从一次对话开始。</p>
 
     <div class="contact-methods reveal reveal-delay-2">
-      <a href="mailto:contact@zhuoshiji.art" class="contact-method">
-        <span class="contact-method-icon">✉</span>
-        <span class="contact-method-text">contact@zhuoshiji.art</span>
-      </a>
-      <a href="#" class="contact-method">
-        <span class="contact-method-icon">💬</span>
-        <span class="contact-method-text">WhatsApp: +86 138-0000-0000</span>
-      </a>
-      <a href="#" class="contact-method">
+      <a href="tel:18577165992" class="contact-method">
         <span class="contact-method-icon">📱</span>
-        <span class="contact-method-text">微信: ZhuoShiJi_Stone</span>
+        <span class="contact-method-text">电话: 18577165992</span>
+      </a>
+      <a href="https://wa.me/8618577165992" class="contact-method">
+        <span class="contact-method-icon">💬</span>
+        <span class="contact-method-text">WhatsApp: 86-18577165992</span>
+      </a>
+      <a href="mailto:1120263059@qq.com" class="contact-method">
+        <span class="contact-method-icon">✉</span>
+        <span class="contact-method-text">邮箱: 1120263059@qq.com</span>
       </a>
     </div>
 
-    <form class="inquiry-form reveal reveal-delay-3" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="name">姓名</label>
-          <input class="form-input" type="text" id="name" placeholder="您的姓名" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">邮箱</label>
-          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="interest">感兴趣的方向</label>
-        <select class="form-select" id="interest">
-          <option value="">请选择</option>
-          <option value="buddha">佛像造像</option>
-          <option value="landscape">山水景观</option>
-          <option value="animal">瑞兽祥禽</option>
-          <option value="stationery">文房雅玩</option>
-          <option value="custom">定制服务</option>
-          <option value="other">其他</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="message">您的需求</label>
-        <textarea class="form-textarea" id="message" placeholder="请描述您的需求，包括期望的石材、尺寸、用途、预算范围等，我们将为您提供专业建议。"></textarea>
-      </div>
-      <button type="submit" class="form-submit">提交咨询</button>
-    </form>
+
   </div>
 </section>
 
@@ -1624,7 +1595,7 @@ img { display: block; max-width: 100%; }
   <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="footer-brand">琢石记</div>
+        <div class="footer-brand">圣腾雕刻</div>
         <p class="footer-desc">以石载道，刻录千年。传承非遗石雕工艺，为全球藏家与空间打造可传世的石雕艺术作品。</p>
       </div>
       <div>
@@ -1656,7 +1627,7 @@ img { display: block; max-width: 100%; }
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 琢石记 ZhuoShiJi. All rights reserved.</span>
+      <span>© 2026 圣腾雕刻 ShengTeng. All rights reserved.</span>
       <span>ICP备案号：XXXXXXXXXX</span>
     </div>
   </div>
@@ -1685,6 +1656,12 @@ window.addEventListener('scroll', () => {
   } else {
     nav.classList.remove('scrolled');
   }
+  
+  // Close mobile menu when scrolling
+  if (navLinks.style.display === 'flex') {
+    navLinks.style.display = 'none';
+  }
+  
   lastScroll = scrollY;
 }, { passive: true });
 

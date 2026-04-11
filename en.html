@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZhuoShiJi — Chinese Stone Sculpture Art</title>
+<title>ShengTeng — Chinese Stone Sculpture Art</title>
 <meta name="description" content="Timeless art carved in stone. Master-crafted Chinese stone sculptures for collectors, designers, and spaces worldwide. Bespoke commissions available.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1268,7 +1268,6 @@ img { display: block; max-width: 100%; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
-  .nav-lang { display: none; }
   .philosophy-grid { grid-template-columns: 1fr; }
   .philosophy-visual { order: -1; }
   .artisan-layout { grid-template-columns: 1fr; }
@@ -1291,7 +1290,7 @@ img { display: block; max-width: 100%; }
 
 <!-- Loading -->
 <div class="loader" id="loader">
-  <div class="loader-logo">ZhuoShiJi</div>
+  <div class="loader-logo">ShengTeng</div>
   <div class="loader-sub">Chinese Stone Sculpture Art</div>
   <div class="loader-bar"></div>
 </div>
@@ -1300,8 +1299,8 @@ img { display: block; max-width: 100%; }
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      ZhuoShiJi
-      <span class="nav-logo-cn">琢石记</span>
+      ShengTeng
+      <span class="nav-logo-cn">圣腾雕刻</span>
     </a>
     <ul class="nav-links">
       <li><a href="#philosophy">About</a></li>
@@ -1687,50 +1686,21 @@ img { display: block; max-width: 100%; }
     <p class="contact-desc reveal reveal-delay-1">Whether you're a collector seeking a singular masterpiece, a designer envisioning a statement piece, or exploring a bespoke commission — every work begins with a conversation.</p>
 
     <div class="contact-methods reveal reveal-delay-2">
-      <a href="mailto:contact@zhuoshiji.art" class="contact-method">
-        <span class="contact-method-icon">✉</span>
-        <span class="contact-method-text">contact@zhuoshiji.art</span>
-      </a>
-      <a href="#" class="contact-method">
-        <span class="contact-method-icon">💬</span>
-        <span class="contact-method-text">WhatsApp: +86 138-0000-0000</span>
-      </a>
-      <a href="#" class="contact-method">
+      <a href="tel:18577165992" class="contact-method">
         <span class="contact-method-icon">📱</span>
-        <span class="contact-method-text">WeChat: ZhuoShiJi_Stone</span>
+        <span class="contact-method-text">Phone: 18577165992</span>
+      </a>
+      <a href="https://wa.me/8618577165992" class="contact-method">
+        <span class="contact-method-icon">💬</span>
+        <span class="contact-method-text">WhatsApp: 86-18577165992</span>
+      </a>
+      <a href="mailto:1120263059@qq.com" class="contact-method">
+        <span class="contact-method-icon">✉</span>
+        <span class="contact-method-text">Email: 1120263059@qq.com</span>
       </a>
     </div>
 
-    <form class="inquiry-form reveal reveal-delay-3" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="name">Full Name</label>
-          <input class="form-input" type="text" id="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">Email</label>
-          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="interest">Area of Interest</label>
-        <select class="form-select" id="interest">
-          <option value="">Select one</option>
-          <option value="buddha">Buddhist Sculpture</option>
-          <option value="landscape">Garden & Landscape</option>
-          <option value="animal">Mythical Beasts</option>
-          <option value="stationery">Scholar's Objects</option>
-          <option value="custom">Bespoke Commission</option>
-          <option value="trade">Trade / Wholesale</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="message">Your Vision</label>
-        <textarea class="form-textarea" id="message" placeholder="Tell us about your project — the space, preferred stone, dimensions, intended use, and approximate budget. We'll respond with tailored recommendations."></textarea>
-      </div>
-      <button type="submit" class="form-submit">Send Inquiry</button>
-    </form>
+
   </div>
 </section>
 
@@ -1739,8 +1709,8 @@ img { display: block; max-width: 100%; }
   <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="footer-brand">ZhuoShiJi</div>
-        <div class="footer-brand-cn">琢石记</div>
+        <div class="footer-brand">ShengTeng</div>
+        <div class="footer-brand-cn">圣腾雕刻</div>
         <p class="footer-desc">Timeless art carved in stone. Carrying forward China's intangible cultural heritage of stone sculpture for collectors and spaces worldwide.</p>
       </div>
       <div>
@@ -1772,7 +1742,7 @@ img { display: block; max-width: 100%; }
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 ZhuoShiJi 琢石记. All rights reserved.</span>
+      <span>© 2026 ShengTeng 圣腾雕刻. All rights reserved.</span>
       <span>Handcrafted with reverence · Quyang, China</span>
     </div>
   </div>
@@ -1786,6 +1756,10 @@ window.addEventListener('load', () => {
   }, 2000);
 });
 
+// Mobile nav
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
 // Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -1793,6 +1767,11 @@ window.addEventListener('scroll', () => {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
+  }
+  
+  // Close mobile menu when scrolling
+  if (navLinks.style.display === 'flex') {
+    navLinks.style.display = 'none';
   }
 }, { passive: true });
 
@@ -1866,9 +1845,7 @@ function handleSubmit(e) {
   }, 3000);
 }
 
-// Mobile nav
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.querySelector('.nav-links');
+// Mobile nav toggle
 navToggle.addEventListener('click', () => {
   const isOpen = navLinks.style.display === 'flex';
   if (isOpen) {
