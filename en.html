@@ -994,6 +994,81 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================
+   AWARDS
+   ============================================ */
+.awards {
+  padding: var(--s-xl) 0;
+  background: var(--white-warm);
+  position: relative;
+}
+.awards::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sand), transparent);
+}
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: var(--s-lg);
+  background: var(--sand);
+}
+.award-card {
+  background: var(--white-warm);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.award-card:hover {
+  transform: translateY(-4px);
+}
+.award-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: grayscale(10%) contrast(1.05);
+}
+.award-card:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0%) contrast(1.1);
+}
+.award-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(26,23,20,0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.award-card:hover .award-overlay {
+  opacity: 1;
+}
+.award-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+.award-year {
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================
    CONTACT
    ============================================ */
 .contact {
@@ -1262,6 +1337,7 @@ img { display: block; max-width: 100%; }
   .custom-flow { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .custom-flow::before { display: none; }
   .testimonials-grid { grid-template-columns: 1fr; }
+  .awards-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1278,6 +1354,7 @@ img { display: block; max-width: 100%; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
   .process-steps { grid-template-columns: 1fr; }
   .custom-flow { grid-template-columns: 1fr; }
+  .awards-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
@@ -1309,6 +1386,7 @@ img { display: block; max-width: 100%; }
       <li><a href="#process">Craft</a></li>
       <li><a href="#materials">Stones</a></li>
       <li><a href="#custom">Bespoke</a></li>
+      <li><a href="#awards">Awards</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="zh-cn.html" class="nav-lang">中文</a>
@@ -1638,6 +1716,41 @@ img { display: block; max-width: 100%; }
         <p class="testimonial-text">I've collected Asian art for twenty years. These stone carvings carry a weight — both literal and spiritual — that you simply cannot find in contemporary Western sculpture.</p>
         <p class="testimonial-author">Richard Whitmore</p>
         <p class="testimonial-role">Art Collector, New York</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section class="awards" id="awards">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Recognition</p>
+      <h2 class="section-title">Awards & Accolades</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="awards-grid reveal">
+      <div class="award-card">
+        <img src="./imgs/获奖证书1.png" alt="National Intangible Cultural Heritage" loading="lazy">
+        <div class="award-overlay">
+          <div class="award-title">National Intangible Cultural Heritage</div>
+          <div class="award-year">2024</div>
+        </div>
+      </div>
+      <div class="award-card">
+        <img src="./imgs/获奖证书2.png" alt="China Arts & Crafts Master" loading="lazy">
+        <div class="award-overlay">
+          <div class="award-title">China Arts & Crafts Master</div>
+          <div class="award-year">2023</div>
+        </div>
+      </div>
+      <div class="award-card">
+        <img src="./imgs/获奖证书3.png" alt="International Stone Art Gold Award" loading="lazy">
+        <div class="award-overlay">
+          <div class="award-title">International Stone Art Gold Award</div>
+          <div class="award-year">2022</div>
+        </div>
       </div>
     </div>
   </div>
